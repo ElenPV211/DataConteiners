@@ -9,16 +9,38 @@ void Print(int** arr, const int rows, const int cols);
 
 int* push_back(int arr[], int& n, int value);
 int* push_front(int arr[], int& n, int value);
+int* push_insert(int arr[], int& n, int m, int value);
 
-//#define DYNAMIC_MEMORY_1
-#define DYNAMIC_MEMORY_2
+//#define POINTERS_AND_ARRAYS
+#define DYNAMIC_MEMORY_1
+//#define DYNAMIC_MEMORY_2
 
 void main()
 {
 	setlocale(0, "");
+#ifdef POINTERS_AND_ARRAYS
+	const int n = 5;
+	int arr[n] = { 3,5,8,13,21 };
+
+	cout << arr << endl;
+	cout << *arr << endl;
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i] << "\t";
+	}
+	cout << endl;
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << *(arr + i) << "\t";
+	}
+	cout << endl;
+#endif // POINTERS_AND_ARRAYS
+
 
 #ifdef DYNAMIC_MEMORY_1
-	int n;
+	int n,m;
 	cout << "Введите размер массива: "; cin >> n;
 	int* arr = new int[n];
 	FillRand(arr, n);
@@ -27,14 +49,16 @@ void main()
 	cout << "Введите добавляемое значение "; cin >> value;
 
 	//arr = push_back(arr, n, value);
-	arr = push_front(arr, n, value);
-
-
+	//arr = push_front(arr, n, value);
+	
+	cout << "Введите индекс позиции для нового значения: "; cin >> m;
+	arr = push_insert(arr, n, m, value);
 
 	Print(arr, n);
-
 	delete[]arr;
 #endif // DYNAMIC_MEMORY_1
+
+#ifdef DYNAMIC_MEMORY_2
 	int rows;
 	int cols;
 	cout << " Введите количество строк: "; cin >> rows;
@@ -46,8 +70,6 @@ void main()
 		arr[i] = new int[cols];
 	}
 
-
-
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
 
@@ -58,6 +80,8 @@ void main()
 	}
 	//2)
 	delete[]arr;
+
+#endif // DYNAMIC_MEMORY_2
 
 }
 void FillRand(int arr[], const int n)
@@ -130,6 +154,27 @@ int* push_front(int arr[], int& n, int value)
 	delete[] arr;
 	arr = buffer;
 	arr[0] = value;
+	n++;
+	return buffer;
+}
+int* push_insert(int arr[], int& n, int m, int value)
+{
+	int* buffer = new int[n + 1] {};
+
+	for (int i = 0; i < m; i++)
+	{
+		buffer[i] = arr[i];
+	}
+	buffer[m] = value;
+
+	for (int i = m; i < n; i++)
+	{
+		buffer[i + 1] = arr[i];
+	}
+
+	delete[]arr;
+	arr = buffer;
+
 	n++;
 	return buffer;
 }
