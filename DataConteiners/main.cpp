@@ -256,7 +256,7 @@ template<typename T>T* insert(T arr[], int& n,T value, int m)
 }
 template<typename T>T* pop_back(T arr[], int& n)
 {
-	T* buffer = new Tt[--n] {};
+	T* buffer = new T[--n] {};
 	for (int i = 0; i < n; i++)buffer[i] = arr[i];
 		delete[]arr;
 	return buffer;
