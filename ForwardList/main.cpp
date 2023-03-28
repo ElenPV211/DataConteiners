@@ -1,12 +1,12 @@
-//ForwardList
+п»ї//ForwardList
 #include<iostream>
 using namespace std;
 #define tab "\t"
 
 class Element
 {
-	int Data;//значение элемента
-	Element* pNext; //адрес следующего элемента
+	int Data;       //Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+	Element* pNext; //Р°РґСЂРµСЃ СЃР»РµРґСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
 public:
 	Element(int Data, Element* pNext = nullptr) : Data(Data), pNext(pNext)
 	{
@@ -21,38 +21,38 @@ public:
 
 class ForwardList
 {
-	Element* Head;
+	Element* Head; //СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅР°С‡Р°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
 public:
 	ForwardList()
 	{
-		Head = nullptr;//если
+		Head = nullptr;//РµСЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚ С‚Рѕ РµРіРѕ РіРѕР»РѕРІР° СѓРєР°Р·С‹РІР°РµС‚ РЅР° РЅРѕР»СЊ
 		cout << "LConstructor:\t" << this << endl;
 	}
 	~ForwardList()
 	{
 		cout << "LDestructor:\t" << this << endl;
 	}
-	//Adding elements:
+	//---------Adding elements: (РґРѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ)
 
 	void push_front(int Data)
 	{
-		//1)создаём новый элемент
+		//1)СЃРѕР·РґР°С‘Рј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 		Element* New = new Element(Data);
-		//2)новый элемент должен указывать на начало списка
+		//2)РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РґРѕР»Р¶РµРЅ СѓРєР°Р·С‹РІР°С‚СЊ РЅР° РЅР°С‡Р°Р»Рѕ СЃРїРёСЃРєР°
 		New->pNext = Head;
-		//3) В голову списка нужно поместить адре нового элемента
+		//3) Р’ РіРѕР»РѕРІСѓ СЃРїРёСЃРєР° РЅСѓР¶РЅРѕ РїРѕРјРµСЃС‚РёС‚СЊ Р°РґСЂРµСЃ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 		Head = New;
 	}
 	//Metods:
 	void print()const
 	{
-		Element* Temp = Head; //Temp-итератор.
-		//Итератор это указатель при помощи которого можно получить 
-		//доступ к элементам структуры
+		Element* Temp = Head; //Temp-РёС‚РµСЂР°С‚РѕСЂ.
+		//РС‚РµСЂР°С‚РѕСЂ СЌС‚Рѕ СѓРєР°Р·Р°С‚РµР»СЊ РїСЂРё РїРѕРјРѕС‰Рё РєРѕС‚РѕСЂРѕРіРѕ РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ 
+		//РґРѕСЃС‚СѓРї Рє СЌР»РµРјРµРЅС‚Р°Рј СЃС‚СЂСѓРєС‚СѓСЂС‹
 		while (Temp)
 		{
 			cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
-			Temp = Temp->pNext;//переходим на новый элемент
+			Temp = Temp->pNext;//РїРµСЂРµС…РѕРґРёРј РЅР° РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 		}
 	}
 };
@@ -61,7 +61,7 @@ void main()
 {
 	setlocale(LC_ALL, "");
 	int n;
-	cout << "Введите размер списка: "; cin >> n;
+	cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ СЃРїРёСЃРєР°: "; cin >> n;
 	ForwardList list;
 	for (int i = 0; i < n; i++)
 	{
