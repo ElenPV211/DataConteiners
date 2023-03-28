@@ -7,7 +7,7 @@ using namespace std;
 int** Allocate(const int rows, const int cols);
 void Clear(int** arr, const int rows);
 
-void FillRand(int arr[], const int n, int minRand =0, int maxRand = 100);//заполняет массив случайными числами на n элементов
+void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);//заполняет массив случайными числами на n элементов
 void FillRand(int** arr, const int rows, const int cols);
 
 void Print(int arr[], const int n);//выводит массив на экран
@@ -15,7 +15,7 @@ void Print(int** arr, const int rows, const int cols);
 
 int* push_back(int arr[], int& n, int value);
 int* push_front(int arr[], int& n, int value);
-int* insert(int arr[], int& n,  int value, int m);
+int* insert(int arr[], int& n, int value, int m);
 
 int* pop_back(int arr[], int& n);
 int* pop_front(int arr[], int& n);
@@ -57,7 +57,7 @@ void main()
 
 
 #ifdef DYNAMIC_MEMORY_1
-	int n,m;
+	int n, m;
 	cout << "Введите размер массива: "; cin >> n;
 	int* arr = new int[n];
 
@@ -71,11 +71,11 @@ void main()
 	Print(arr, n);
 
 	cout << "Введите добавляемое в начало значение "; cin >> value;
-	Print(arr = push_front(arr, n, value),n);	
+	Print(arr = push_front(arr, n, value), n);
 
 	cout << "Введите добавляемое значение в позицию с заданным индексом "; cin >> value;
 	cout << "Введите индекс добавляемого значения: "; cin >> m;
-	Print(arr = insert(arr, n, value, m),n);
+	Print(arr = insert(arr, n, value, m), n);
 
 	Print(arr = pop_back(arr, n), n);
 	Print(arr = pop_front(arr, n), n);
@@ -93,11 +93,11 @@ void main()
 	cout << " Введите количество столбцов: "; cin >> cols;
 
 	int** arr = Allocate(rows, cols);
-	
+
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
 	cout << delimiter << endl;
-	
+
 	arr = push_row_back(arr, rows, cols);
 	FillRand(arr[rows - 1], cols, 100, 200);
 	Print(arr, rows, cols);
@@ -121,8 +121,8 @@ void main()
 }
 int** Allocate(const int rows, const int cols)
 {
-	
-     int** arr = new int* [rows];//1)создаём массив указателей
+
+	int** arr = new int* [rows];//1)создаём массив указателей
 	//2) выделяем память под строки, и адреса строк записываем в элементы массива указателей
 	for (int i = 0; i < rows; i++)
 	{
@@ -131,9 +131,9 @@ int** Allocate(const int rows, const int cols)
 	return arr;
 
 }
-void Clear(int** arr, const int rows) 
+void Clear(int** arr, const int rows)
 {
-    //1)Cначала удаляем строки ДДМ:
+	//1)Cначала удаляем строки ДДМ:
 	for (int i = 0; i < rows; i++)
 	{
 		delete[]arr[i];
@@ -209,46 +209,46 @@ int* push_front(int arr[], int& n, int value)
 		buffer[i + 1] = arr[i];
 	}
 	delete[] arr;
-	
+
 	buffer[0] = value;
 	n++;
 	return buffer;
 }
-int* insert(int arr[], int& n,int value, int m)
-{	
+int* insert(int arr[], int& n, int value, int m)
+{
 	if (m < 0 || m > n)return arr;
 
-		int* buffer = new int[n + 1] {};
+	int* buffer = new int[n + 1] {};
 
-		/*for (int i = 0; i < m; i++)	buffer[i] = arr[i];
-		for (int i = m; i < n; i++)	buffer[i + 1] = arr[i];*/
+	/*for (int i = 0; i < m; i++)	buffer[i] = arr[i];
+	for (int i = m; i < n; i++)	buffer[i + 1] = arr[i];*/
+	//или
+	for (int i = 0; i < n; i++)
+	{
+		/*if (i < m) buffer[i] = arr[i];
+		else   buffer[i + 1] = arr[i];*/
 		//или
-		for (int i = 0; i < n; i++)
-		{
-			/*if (i < m) buffer[i] = arr[i];
-			else   buffer[i + 1] = arr[i];*/
-			//или
-			//(i < m ? buffer[i] : buffer[i + 1]) = arr[i];
-			//или
-			buffer[i < m ? i : i + 1] = arr[i];
-		}
-		delete[]arr;
-		
-		buffer[m] = value;
-		n++;
-		return buffer;	
+		//(i < m ? buffer[i] : buffer[i + 1]) = arr[i];
+		//или
+		buffer[i < m ? i : i + 1] = arr[i];
+	}
+	delete[]arr;
+
+	buffer[m] = value;
+	n++;
+	return buffer;
 }
 int* pop_back(int arr[], int& n)
 {
 	int* buffer = new int[--n] {};
 	for (int i = 0; i < n; i++)buffer[i] = arr[i];
-		delete[]arr;
+	delete[]arr;
 	return buffer;
 }
 int* pop_front(int arr[], int& n)
 {
 	int* buffer = new int[--n] {};
-	for (int i = 0; i < n; i++)buffer[i] = arr[i + 1];	
+	for (int i = 0; i < n; i++)buffer[i] = arr[i + 1];
 	delete[]arr;
 	return buffer;
 }
@@ -257,9 +257,9 @@ int* erase(int arr[], int& n, int m)
 	if (m < 0 || m > n)return arr;
 
 	int* buffer = new int[--n] {};
-	for (int i = 0; i < n; i++)	buffer[i] = arr[i< m ? i : i + 1];
-delete[]arr;
-return buffer;	
+	for (int i = 0; i < n; i++)	buffer[i] = arr[i < m ? i : i + 1];
+	delete[]arr;
+	return buffer;
 }
 
 int** push_row_back(int** arr, int& rows, const int cols)
@@ -279,7 +279,7 @@ int** pop_row_back(int** arr, int& rows, const int cols)
 	int** buffer = new int* [--rows] {};
 	for (int i = 0; i < rows; i++)buffer[i] = arr[i];
 	delete[]arr;
-	return buffer;	
+	return buffer;
 }
 void push_col_back(int** arr, const int rows, int& cols)
 {
