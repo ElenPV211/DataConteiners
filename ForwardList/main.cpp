@@ -80,6 +80,8 @@ public:
 	}
 	ForwardList(initializer_list<int> il) :ForwardList()
 	{
+		//begin() - возвращает итератор на начало контейнера
+		//end() - возвращает итератор на конец контейнера
 		cout << typeid(il.begin()).name() << endl;
 		for (int const* it = il.begin(); it != il.end(); it++)
 		{
