@@ -1,5 +1,6 @@
 ﻿//ForwardList
 #include<iostream>
+#include<ctime>
 using namespace std;
 #define tab "\t"
 #define delimiter "\n---------------------------------------------\n"
@@ -13,19 +14,58 @@ public:
 	Element(int Data, Element* pNext = nullptr) : Data(Data), pNext(pNext)
 	{
 		count++;
+#ifdef DEBUG
 		cout << "EConstructor:\t" << this << endl;
+
+#endif // DEBUG
 
 	}
 	~Element()
 	{
 		count--;
+#ifdef DEBUG
 		cout << "EDestructor:\t" << this << endl;
+
+#endif // DEBUG
 	}
 	friend class ForwardList;
 	friend ForwardList operator+(const ForwardList& left, const ForwardList& right);
+	friend class ConstIterator;
 	friend class Iterator;
 };
 int Element::count = 0;//статическую переменную можно проинициализировать толькза пределами класса
+
+class ConstIterator
+{
+	Element* Temp;
+public:
+	ConstIterator(Element* Temp) :Temp(Temp)
+	{
+		cout << "ItConstractor:\t" << this << endl;
+
+	}
+	~ConstIterator()
+	{
+		cout << "ItDestractor:\t" << this << endl;
+	}
+	ConstIterator& operator++()
+	{
+		Temp = Temp->pNext;
+		return *this;
+	}
+	bool operator==(const ConstIterator& other) const
+	{
+		return this->Temp == other.Temp;
+	}
+	bool operator!=(const ConstIterator& other)const
+	{
+		return this->Temp != other.Temp;
+	}
+	const int& operator*()const //оператор разыменование
+	{
+		return Temp->Data;
+	}
+};
 
 class Iterator
 {
@@ -53,7 +93,7 @@ public:
 	{
 		return this->Temp != other.Temp;
 	}
-	int& operator*() //оператор разыменование
+	int& operator*()	//оператор разыменование
 	{
 		return Temp->Data;
 	}
@@ -72,6 +112,14 @@ public:
 	{
 		return nullptr;
 	}
+	const ConstIterator begin()const
+	{
+		return Head;
+	}
+	const ConstIterator end()const
+	{
+		return nullptr;
+	}
 	ForwardList()
 	{
 		Head = nullptr;//если список пуст то его голова указывает на ноль
@@ -87,7 +135,6 @@ public:
 		{
 			push_back(*it);
 		}
-
 	}
 	ForwardList(const ForwardList& other) :ForwardList()//из конструктора копирования делегируем конструктор по умолчанию
 		//для того чтобы конструктор копирования обнулял голову
@@ -113,11 +160,12 @@ public:
 		if (this == &other)return *this; //если тот список равен этому - тот оставить неизменным
 		while (Head)pop_front();
 		for (Element* Temp = other.Head; Temp; Temp = Temp->pNext)
-			push_back(Temp->Data);
+			push_front(Temp->Data);
+		reverse();
 		return* this;
 	}
 
-	//---------------Muve Metods------------------
+	//---------------Move Metods------------------
 	ForwardList& operator=(ForwardList&& other)//оператор присваивания принимает не константу и не ссылку
 	{
 		if (this == &other)return *this;
@@ -222,6 +270,17 @@ public:
 		size--;
 	}
 	//----------------Metods:---------------
+	void reverse()
+	{
+		ForwardList buffer;
+		while (Head)
+		{
+			buffer.push_front(Head->Data);
+			pop_front();
+		}
+		this->Head = buffer.Head;
+		buffer.Head = nullptr;
+	}
 	void print()const
 	{
 		/*Element* Temp = Head; //Temp-итератор.
@@ -235,7 +294,6 @@ public:
 		cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
 		cout << "Количество элементов списка: " << size << endl;
 		cout << "Общее количество элементов:  " << Element::count << endl;
-
 	}
 	friend ForwardList operator+(const ForwardList& left, const ForwardList& right);
 };
@@ -249,6 +307,7 @@ ForwardList operator+(const ForwardList& left, const ForwardList& right)
 	return cat;
 }
 
+
 void print(int arr[])
 {
 	cout << typeid(arr).name() << endl;
@@ -259,18 +318,20 @@ void print(int arr[])
 	}
 	cout << endl;*/
 }
-/*void print(const ForwardList arr[]) !!!!!!!!!
+void print(const ForwardList& list)
 {
-	for (int i : arr)
+	for (const int& i : list)
 	{
+		//i *= 10;
 		cout << i << tab;
 	}
 	cout << endl;
-}*/
+}
 
 //#define BASE_CHACK
 //#define OPERATOR_PLUS
-//#define RANGE_BASED_FOR_ARRAY
+//#define RANGE_BASED_FOR_ARRA
+//#define RANGE_BASED_FOR_LIST
 
 void main()
 {
@@ -350,12 +411,40 @@ void main()
 	cout << endl;
 #endif // RANGE_BASED_FOR_ARRAY
 
-ForwardList list = {3,5,8,13,21};
-	//list.print();
-	
-	for (int i : list)    //синтаксис for который используется исключительно с диапазонами
+#ifdef RANGE_BASED_FOR_LIST
+	ForwardList list = { 3,5,8,13,21 };
+
+	/*for (int i : list)    //синтаксис for который используется исключительно с диапазонами
 	{
+		i *= 10;
 		cout << i << tab;
-	}
+	}*/
 	cout << endl;
+	print(list);
+	list.print();
+#endif // RANGE_BASED_FOR_LIST
+
+	int n;
+	cout << "Введите размер списка: "; cin >> n;
+
+	clock_t start = clock();
+	ForwardList list;
+	for (int i = 0; i < n; i++)
+	{
+		//list.push_back(rand()); //намного медленнее
+		list.push_front(rand()%100);
+	}
+
+	clock_t end = clock();
+	double delta = double(end - start) / CLOCKS_PER_SEC;
+
+	cout << "список заполнен за :"<< delta <<"сек" << endl;
+	//list.print();
+	start = clock();
+	ForwardList list2 = list;
+	end = clock();
+	delta = double(end - start) / CLOCKS_PER_SEC;
+	cout << "список скопирован за "<< delta << endl;
+	//list2.print();
+
 }
