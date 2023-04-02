@@ -39,8 +39,7 @@ public:
 	friend class ConstIterator<T>;
 	friend class Iterator<T>;
 };
-template<typename T>
-int Element<T>::count = 0;//статическую переменную можно проинициализировать толькза пределами класса
+template<typename T> int Element<T>::count = 0;//статическую переменную можно проинициализировать толькза пределами класса
 
 	template<typename T>
 class ConstIterator
