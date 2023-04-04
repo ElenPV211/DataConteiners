@@ -40,10 +40,9 @@ public:
 	friend class Iterator<T>;
 };
 template<typename T>
-int Element<T>::count = 0;//статическую переменную можно проинициализировать толькза пределами класса
+int Element<T>::count = 0;//статическую переменную можно проинициализировать только за пределами класса
 
-	template<typename T>
-class ConstIterator
+template<typename T> class ConstIterator
 {
 	Element<T>* Temp;
 public:
@@ -69,13 +68,13 @@ public:
 	{
 		return this->Temp != other.Temp;
 	}
-	const T& operator*()const //оператор разыменование
+	const T& operator*()const //оператор разыменования будет возвращать ссылку не на int а на шаблонный
 	{
 		return Temp->Data;
 	}
 };
-template<typename T>
-class Iterator
+
+template<typename T> class Iterator
 {
 	Element<T>* Temp;
 public:
@@ -106,9 +105,7 @@ public:
 		return Temp->Data;
 	}
 };
-template<typename T>
-
-class ForwardList
+template<typename T> class ForwardList
 {
 	Element<T>* Head; //указатель на начальный элемент списка
 	unsigned int size;
@@ -146,6 +143,7 @@ public:
 			push_back(*it);
 		}
 	}
+	//в конструкторе принимается шаблонный ForwardList<T>
 	ForwardList(const ForwardList<T>& other) :ForwardList()//из конструктора копирования делегируем конструктор по умолчанию
 		//для того чтобы конструктор копирования обнулял голову
 	{
@@ -153,9 +151,10 @@ public:
 		*this = other; //в операторе присваивания написана процедура копирования, а конструктор копирования её просто вызывает 
 	}
 	//перенапишем конструктор переноса MOVE метод из за того чтобы пересоздать объект на месте вызова идля этого он обращается к конструктору
+	//в move конструкторе принимается шаблонный ForwardList<T>
 	ForwardList(ForwardList<T>&& other) :ForwardList() 
 	{
-		*this = std::move(other);//тоже в конструкторе преноса повторно использует код оператора присваивания = 
+		*this = std::move(other);//тоже в конструкторе переноса повторно использует код оператора присваивания = 
 		//move - это функция из пространства std
 	}
 	~ForwardList()
@@ -309,8 +308,7 @@ public:
 };
 
 
-template<typename T>
-ForwardList<T> operator+(const ForwardList<T>& left, const ForwardList<T>& right)
+template<typename T> ForwardList<T> operator+(const ForwardList<T>& left, const ForwardList<T>& right)
 {
 	ForwardList<T> cat=left;
 	//for (Element* Temp = left.Head; Temp; Temp = Temp->pNext)cat.push_back(Temp->Data);
@@ -330,8 +328,7 @@ void print(int arr[])
 	}
 	cout << endl;*/
 }
-template<typename T>
-void print(const ForwardList<T>& list)
+template<typename T> void print(const ForwardList<T>& list)
 {
 	for (const T& i : list)
 	{
@@ -462,6 +459,7 @@ void main()
 	cout << "список скопирован за " << delta << endl;
 	//list2.print();  
 #endif // PROFORMANS_TEST
+	
 	ForwardList<int> i_list = { 3,5,8,13,21 };
 	for (int i : i_list)cout << i << tab; cout << endl;
 
@@ -472,3 +470,8 @@ void main()
 	for (std::string i :s_list)cout << i << tab; cout << endl;
 
 }
+/*
+----------------------------------------------
+Class object;        //обычный класс
+Class<type> object;  //шаблонный класс
+*/
