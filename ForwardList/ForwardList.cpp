@@ -1,4 +1,4 @@
-#include"ForwardList.h"
+п»ї#include"ForwardList.h"
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////------------Element---------/////////////////////////////////////////////
 template<typename T>Element<T>::Element(T Data, Element<T>* pNext) : Data(Data), pNext(pNext)
@@ -48,7 +48,7 @@ template<typename T>bool ConstIterator<T>::operator!=(const ConstIterator& other
 {
 	return this->Temp != other.Temp;
 }
-template<typename T>const T& ConstIterator<T>::operator*()const //оператор разыменование
+template<typename T>const T& ConstIterator<T>::operator*()const //РѕРїРµСЂР°С‚РѕСЂ СЂР°Р·С‹РјРµРЅРѕРІР°РЅРёРµ
 {
 	return Temp->Data;
 }
@@ -81,7 +81,7 @@ template<typename T> bool Iterator<T>::operator!=(const Iterator& other)const
 {
 	return this->Temp != other.Temp;
 }
-template<typename T> T& Iterator<T>::operator*()	//оператор разыменование
+template<typename T> T& Iterator<T>::operator*()	//РѕРїРµСЂР°С‚РѕСЂ СЂР°Р·С‹РјРµРЅРѕРІР°РЅРёРµ
 {
 	return Temp->Data;
 }
@@ -111,30 +111,30 @@ template<typename T>const ConstIterator<T> ForwardList<T>::end()const
 
 template<typename T>ForwardList<T>::ForwardList()
 {
-	Head = nullptr;//если список пуст то его голова указывает на ноль
+	Head = nullptr;//РµСЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚ С‚Рѕ РµРіРѕ РіРѕР»РѕРІР° СѓРєР°Р·С‹РІР°РµС‚ РЅР° РЅРѕР»СЊ
 	size = 0;
 	cout << "LConstructor:\t" << this << endl;
 }
 template<typename T>ForwardList<T>::ForwardList(initializer_list<T> il) :ForwardList()
 {
-	//begin() - возвращает итератор на начало контейнера
-	//end() - возвращает итератор на конец контейнера
+	//begin() - РІРѕР·РІСЂР°С‰Р°РµС‚ РёС‚РµСЂР°С‚РѕСЂ РЅР° РЅР°С‡Р°Р»Рѕ РєРѕРЅС‚РµР№РЅРµСЂР°
+	//end() - РІРѕР·РІСЂР°С‰Р°РµС‚ РёС‚РµСЂР°С‚РѕСЂ РЅР° РєРѕРЅРµС† РєРѕРЅС‚РµР№РЅРµСЂР°
 	cout << typeid(il.begin()).name() << endl;
 	for (T const* it = il.begin(); it != il.end(); it++)
 	{
 		push_back(*it);
 	}
 }
-template<typename T>ForwardList<T>::ForwardList(const ForwardList<T>& other) :ForwardList()//из конструктора копирования делегируем конструктор по умолчанию
-//для того чтобы конструктор копирования обнулял голову
+template<typename T>ForwardList<T>::ForwardList(const ForwardList<T>& other) :ForwardList()//РёР· РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° РєРѕРїРёСЂРѕРІР°РЅРёСЏ РґРµР»РµРіРёСЂСѓРµРј РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+//РґР»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РѕР±РЅСѓР»СЏР» РіРѕР»РѕРІСѓ
 {
-	/*for (Element* Temp = other.Head; Temp; Temp = Temp->pNext) push_back(Temp->Data); или*/
-	*this = other; //в операторе присваивания написана процедура копирования, а конструктор копирования её просто вызывает 
+	/*for (Element* Temp = other.Head; Temp; Temp = Temp->pNext) push_back(Temp->Data); РёР»Рё*/
+	*this = other; //РІ РѕРїРµСЂР°С‚РѕСЂРµ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ РЅР°РїРёСЃР°РЅР° РїСЂРѕС†РµРґСѓСЂР° РєРѕРїРёСЂРѕРІР°РЅРёСЏ, Р° РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РµС‘ РїСЂРѕСЃС‚Рѕ РІС‹Р·С‹РІР°РµС‚ 
 }
 template<typename T>ForwardList<T>::ForwardList(ForwardList<T>&& other) :ForwardList()
 {
-	*this = std::move(other);//тоже в конструкторе преноса повторно использует код оператора присваивания = 
-	//move - это функция из пространства std
+	*this = std::move(other);//С‚РѕР¶Рµ РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРµ РїСЂРµРЅРѕСЃР° РїРѕРІС‚РѕСЂРЅРѕ РёСЃРїРѕР»СЊР·СѓРµС‚ РєРѕРґ РѕРїРµСЂР°С‚РѕСЂР° РїСЂРёСЃРІР°РёРІР°РЅРёСЏ = 
+	//move - СЌС‚Рѕ С„СѓРЅРєС†РёСЏ РёР· РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІР° std
 }
 template<typename T>ForwardList<T>::~ForwardList()
 {
@@ -145,14 +145,14 @@ template<typename T>ForwardList<T>::~ForwardList()
 ///------------------Operator-------------------
 template<typename T>ForwardList<T>& ForwardList<T>::operator=(const ForwardList<T>& other)
 {
-	if (this == &other)return *this; //если тот список равен этому - тот оставить неизменным
+	if (this == &other)return *this; //РµСЃР»Рё С‚РѕС‚ СЃРїРёСЃРѕРє СЂР°РІРµРЅ СЌС‚РѕРјСѓ - С‚РѕС‚ РѕСЃС‚Р°РІРёС‚СЊ РЅРµРёР·РјРµРЅРЅС‹Рј
 	while (Head)pop_front();
 	for (Element<T>* Temp = other.Head; Temp; Temp = Temp->pNext)
 		push_front(Temp->Data);
 	reverse();
 	return*this;
 }
-template<typename T>ForwardList<T>& ForwardList<T>::operator=(ForwardList<T>&& other)//оператор присваивания принимает не константу и не ссылку
+template<typename T>ForwardList<T>& ForwardList<T>::operator=(ForwardList<T>&& other)//РѕРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ РїСЂРёРЅРёРјР°РµС‚ РЅРµ РєРѕРЅСЃС‚Р°РЅС‚Сѓ Рё РЅРµ СЃСЃС‹Р»РєСѓ
 {
 	if (this == &other)return *this;
 	while (Head)pop_front();
@@ -163,14 +163,14 @@ template<typename T>ForwardList<T>& ForwardList<T>::operator=(ForwardList<T>&& o
 	return *this;
 
 }
-//---------Adding elements: (добавление элементов)
+//---------Adding elements: (РґРѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ)
 template<typename T>void ForwardList<T>::push_front(T Data)
 {
-	/*//1)создаём новый элемент
+	/*//1)СЃРѕР·РґР°С‘Рј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 	Element* New = new Element(Data);
-	//2)новый элемент должен указывать на начало списка
+	//2)РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РґРѕР»Р¶РµРЅ СѓРєР°Р·С‹РІР°С‚СЊ РЅР° РЅР°С‡Р°Р»Рѕ СЃРїРёСЃРєР°
 	New->pNext = Head;
-	//3) В голову списка нужно поместить адрес нового элемента
+	//3) Р’ РіРѕР»РѕРІСѓ СЃРїРёСЃРєР° РЅСѓР¶РЅРѕ РїРѕРјРµСЃС‚РёС‚СЊ Р°РґСЂРµСЃ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	Head = New;
 	*/
 	Head = new Element<T>(Data, Head);
@@ -181,16 +181,16 @@ template<typename T>void ForwardList<T>::push_front(T Data)
 template<typename T>void ForwardList<T>::push_back(T Data)
 {
 	if (Head == nullptr)return push_front(Data);
-	//1)создаём новый элемент
+	//1)СЃРѕР·РґР°С‘Рј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 	//Element* New = new Element(Data);
-	//2)доходим до конца списка
+	//2)РґРѕС…РѕРґРёРј РґРѕ РєРѕРЅС†Р° СЃРїРёСЃРєР°
 	Element<T>* Temp = Head;
 	while (Temp->pNext != nullptr)
 	{
 		Temp = Temp->pNext;
 	}
-	//По завершении этого цикла Temp указывает на последний элемент списка
-	//3)Вставляем новый элемент в конец списка:
+	//РџРѕ Р·Р°РІРµСЂС€РµРЅРёРё СЌС‚РѕРіРѕ С†РёРєР»Р° Temp СѓРєР°Р·С‹РІР°РµС‚ РЅР° РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
+	//3)Р’СЃС‚Р°РІР»СЏРµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РІ РєРѕРЅРµС† СЃРїРёСЃРєР°:
 	Temp->pNext = new Element<T>(Data);
 	size++;
 }
@@ -198,12 +198,12 @@ template<typename T>void ForwardList<T>::insert(T Data, int Index)
 {
 	if (Index == 0)return push_front(Data);
 	if (Index > size)return;
-	//1)Создаём новый элемент
+	//1)РЎРѕР·РґР°С‘Рј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 	Element<T>* New = new Element<T>(Data);
-	//2)Доходим до нужного элемента
+	//2)Р”РѕС…РѕРґРёРј РґРѕ РЅСѓР¶РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	Element<T>* Temp = Head;
 	for (int i = 0; i < Index - 1; i++)Temp = Temp->pNext;
-	//3)Поместить элемент в список на нужную позицию
+	//3)РџРѕРјРµСЃС‚РёС‚СЊ СЌР»РµРјРµРЅС‚ РІ СЃРїРёСЃРѕРє РЅР° РЅСѓР¶РЅСѓСЋ РїРѕР·РёС†РёСЋ
 	New->pNext = Temp->pNext;
 	Temp->pNext = New;
 	size++;
@@ -211,27 +211,27 @@ template<typename T>void ForwardList<T>::insert(T Data, int Index)
 //----------------Removing elements:
 template<typename T>void ForwardList<T>::pop_front()
 {
-	//1))запоминем адрес удаляемого элемента
+	//1))Р·Р°РїРѕРјРёРЅРµРј Р°РґСЂРµСЃ СѓРґР°Р»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	Element<T>* Erased = Head;
-	//2)Переводим голову на следующий элемент и исключаем удаляемый элемент из списка
+	//2)РџРµСЂРµРІРѕРґРёРј РіРѕР»РѕРІСѓ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚ Рё РёСЃРєР»СЋС‡Р°РµРј СѓРґР°Р»СЏРµРјС‹Р№ СЌР»РµРјРµРЅС‚ РёР· СЃРїРёСЃРєР°
 	Head = Head->pNext;
-	//3) удаляем элемент из пмяти
+	//3) СѓРґР°Р»СЏРµРј СЌР»РµРјРµРЅС‚ РёР· РїРјСЏС‚Рё
 	delete Erased;
 	size--;
 }
 template<typename T>void ForwardList<T>::pop_back()
 {
-	//1)доходим до предпоследнего элемента списка
+	//1)РґРѕС…РѕРґРёРј РґРѕ РїСЂРµРґРїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р° СЃРїРёСЃРєР°
 	Element<T>* Temp = Head;
 	while (Temp->pNext->pNext)
 	{
 		Temp = Temp->pNext;
 
 	}
-	//2) Удаляем последний элемент из памяти
+	//2) РЈРґР°Р»СЏРµРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ РёР· РїР°РјСЏС‚Рё
 
 	delete Temp->pNext;
-	//3)зануляем адрес последнего элемента
+	//3)Р·Р°РЅСѓР»СЏРµРј Р°РґСЂРµСЃ РїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
 	Temp->pNext = nullptr;
 	size--;
 }
@@ -239,12 +239,12 @@ template<typename T>void ForwardList<T>::erase(int Index)
 {
 	if (Index == 0)return pop_front();
 	if (Index > size)return;
-	//1)Доходим до элемента перед удаляемым
+	//1)Р”РѕС…РѕРґРёРј РґРѕ СЌР»РµРјРµРЅС‚Р° РїРµСЂРµРґ СѓРґР°Р»СЏРµРјС‹Рј
 	Element<T>* Temp = Head;
 	for (int i = 0; i < Index - 1; i++)Temp = Temp->pNext;
-	//2)Запоминаем адрес удаляемого элемента
+	//2)Р—Р°РїРѕРјРёРЅР°РµРј Р°РґСЂРµСЃ СѓРґР°Р»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	Element<T>* Erased = Temp->pNext;
-	//3)исключаем удаляемый элемент из списка
+	//3)РёСЃРєР»СЋС‡Р°РµРј СѓРґР°Р»СЏРµРјС‹Р№ СЌР»РµРјРµРЅС‚ РёР· СЃРїРёСЃРєР°
 	Temp->pNext = Temp->pNext->pNext;
 	//4)
 	delete Erased;
@@ -253,7 +253,7 @@ template<typename T>void ForwardList<T>::erase(int Index)
 //----------------Metods:---------------
 template<typename T>void ForwardList<T>::reverse()
 {
-	ForwardList<T> buffer;//<T>это шаблонный список
+	ForwardList<T> buffer;//<T>СЌС‚Рѕ С€Р°Р±Р»РѕРЅРЅС‹Р№ СЃРїРёСЃРѕРє
 	while (Head)
 	{
 		buffer.push_front(Head->Data);
@@ -266,8 +266,8 @@ template<typename T>void ForwardList<T>::print()const
 {
 	for (Element<T>* Temp = Head; Temp; Temp = Temp->pNext)
 		cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
-	cout << "Количество элементов списка: " << size << endl;
-	cout << "Общее количество элементов:  " << Element<T>::count << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°: " << size << endl;
+	cout << "РћР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ:  " << Element<T>::count << endl;
 }
 template<typename T>
 ForwardList<T> operator+(const ForwardList<T>& left, const ForwardList<T>& right)
