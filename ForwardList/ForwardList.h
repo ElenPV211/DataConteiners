@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 //ForwardList
 //
 #include<iostream>
@@ -14,9 +14,9 @@ template<typename T> class Iterator;
 
 template<typename T> class Element
 {
-	T Data;       //значение элемента
-	//чтобы обращаться???
-	Element<T>* pNext; //адрес следующего элемента
+	T Data;       //Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+	//С‡С‚РѕР±С‹ РѕР±СЂР°С‰Р°С‚СЊСЃСЏ???
+	Element<T>* pNext; //Р°РґСЂРµСЃ СЃР»РµРґСѓСЋС‰РµРіРѕ СЌР»РµРјРµРЅС‚Р°
 	static int count;
 public:
 	Element(T Data, Element<T>* pNext = nullptr);
@@ -27,7 +27,7 @@ public:
 	friend class ConstIterator<T>;
 	friend class Iterator<T>;
 };
-template<typename T> int Element<T>::count = 0;//статическую переменную можно проинициализировать толькза пределами класса
+template<typename T> int Element<T>::count = 0;//СЃС‚Р°С‚РёС‡РµСЃРєСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ РјРѕР¶РЅРѕ РїСЂРѕРёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°С‚СЊ С‚РѕР»СЊРєР·Р° РїСЂРµРґРµР»Р°РјРё РєР»Р°СЃСЃР°
 
 template<typename T>
 class ConstIterator
@@ -57,7 +57,7 @@ template<typename T>
 
 class ForwardList
 {
-	Element<T>* Head; //указатель на начальный элемент списка
+	Element<T>* Head; //СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅР°С‡Р°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
 	unsigned int size;
 public:
 
@@ -74,7 +74,7 @@ public:
 	ForwardList<T>& operator=(const ForwardList<T>& other);
 	//---------------Move Metods------------------
 	ForwardList<T>& operator=(ForwardList<T>&& other);
-	//---------Adding elements: (добавление элементов)
+	//---------Adding elements: (РґРѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ)
 	void push_front(T Data);
 	void push_back(T Data);
 	void insert(T Data, int Index);
