@@ -78,6 +78,8 @@ public:
 
 	void insert(int Data, int Index)
 	{
+		if (Index == size) { push_back(Data); return; }
+		if (Index == 0) { push_front(Data); return; }
 		if (Index > size)return;
 		Element* Temp;
 		if (Index < size / 2)
@@ -138,6 +140,30 @@ public:
 		Tail->pNext = nullptr;
 		size--;
 	}
+	void erase(int Index)
+	{
+		if (Index == size) { pop_back(); return; }
+		if (Index == 0) { pop_front(); return; }
+		if (Head == Tail)return pop_front();
+		if (Index > size)return;
+		Element* Temp;
+		if (Index < size / 2)
+		{
+			Temp = Head;
+			for (int i = 0; i < Index; i++)Temp = Temp->pNext;
+		}
+		else
+		{
+			Temp = Tail;
+			for (int i = 0; i < size - Index - 1; i++)Temp = Temp->pPrev;
+		}
+		if (Temp == Tail)return pop_back();
+		Temp->pPrev->pNext = Temp->pNext;
+		delete Temp;
+		Temp = nullptr;
+		size--;
+
+	}
 	
 	//---------------Metods-----------
 	void print()const
@@ -174,4 +200,11 @@ void main()
 	list.insert(value, index);
 	list.print();
 	list.reverse_print();
+
+	int index2;
+	cout << "Введите индекс удаляемого элемента: "; cin >> index2;
+	list.erase(index2);
+	list.print();
+	list.reverse_print();
+
 }
