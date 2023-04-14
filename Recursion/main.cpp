@@ -35,7 +35,7 @@ int fibonachi(int n)
 	if (n == 1 || n == 2)return 1;
 	if (n>2)return fibonachi(n - 1) + fibonachi(n - 2);
 	else return fibonachi(n + 2) - fibonachi(n + 1);
-	//cout << fibonachi(n) << "  ";
+	cout << fibonachi(n) << "  ";
 }
 void main()
 {
@@ -55,5 +55,7 @@ void main()
 	
 	int n = 0;
 	cout << "Введите число: "; cin >> n;
+	for (int i = 0; i <= n;i++)cout << fibonachi(i) << " ";
 	cout << fibonachi(n);
+
 }
