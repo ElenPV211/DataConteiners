@@ -29,12 +29,13 @@ double power(double a, int n)
 	else return 1 / power(a, -n);*/
 	return n == 0 ? 1 : n > 0 ? a * power(a, n - 1) : 1 / power(a, -n);
 }
-int f(int n)
+int fibonachi(int n)
 {
 	if (n == 0)return 0;
 	if (n == 1 || n == 2)return 1;
-	if (n>2)return f(n - 1) + f(n - 2);
-	else return f(n + 2) - f(n + 1);
+	if (n>2)return fibonachi(n - 1) + fibonachi(n - 2);
+	else return fibonachi(n + 2) - fibonachi(n + 1);
+	//cout << fibonachi(n) << "  ";
 }
 void main()
 {
@@ -54,5 +55,4 @@ void main()
 	
 	int n = 0;
 	cout << "Введите число: "; cin >> n;
-	cout << f(n);
 }
