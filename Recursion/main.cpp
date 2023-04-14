@@ -55,4 +55,5 @@ void main()
 	
 	int n = 0;
 	cout << "Введите число: "; cin >> n;
+	cout << fibonachi(n);
 }
