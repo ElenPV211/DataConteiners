@@ -55,7 +55,7 @@ void main()
 	
 	int n = 0;
 	cout << "Введите число: "; cin >> n;
-	for (int i = 0; i <= n;i++)cout << fibonachi(i) << " ";
-	cout << fibonachi(n);
+	if(n>0)for (int i = 0; i <= n;i++)cout << fibonachi(i) << " ";
+	if(n<=0)cout << fibonachi(n);
 
 }
