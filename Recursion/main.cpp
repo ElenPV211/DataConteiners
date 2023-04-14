@@ -29,14 +29,27 @@ double power(double a, int n)
 	else return 1 / power(a, -n);*/
 	return n == 0 ? 1 : n > 0 ? a * power(a, n - 1) : 1 / power(a, -n);
 }
-int fibonachi(int n)
+/*void fibonachi(int n, long long int a = 0, long long int b = 1)
 {
-	if (n == 0)return 0;
-	if (n == 1 || n == 2)return 1;
-	if (n>2)return fibonachi(n - 1) + fibonachi(n - 2);
-	else return fibonachi(n + 2) - fibonachi(n + 1);
-	cout << fibonachi(n) << "  ";
-}
+	if (a>=n)return; 
+	cout << a << "   ";
+	fibonachi(n, b, a + b);
+}*/
+class Fibonacci
+{
+	static void sequence(int n, long long int a, long long int b)
+	{
+		if (a > n)return;
+		cout << a << "\t";
+		sequence(n, b, a + b);
+	}
+public:
+	void sequence(int n)
+	{
+		sequence(n, 0, 1);
+	}
+};
+
 void main()
 {
 	setlocale(0, "");
@@ -54,8 +67,7 @@ void main()
 	cout << a << " ^ " << n << " = " << power(a, n) << endl;*/
 	
 	int n = 0;
-	cout << "Введите число: "; cin >> n;
-	if(n>0)for (int i = 0; i <= n;i++)cout << fibonachi(i) << " ";
-	if(n<=0)cout << fibonachi(n);
+	cout << "Введите предел: "; cin >> n;
+    Fibonacci(n);
 
 }
