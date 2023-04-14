@@ -1,16 +1,16 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 
 void elevator(int floor)
 {
 	if (floor <= 0)
 	{
-		cout << "Âû â ïîäâàëå" << endl;
+		cout << "Ð’Ñ‹ Ð² Ð¿Ð¾Ð´Ð²Ð°Ð»Ðµ" << endl;
 		return;
 	}
-	cout << "âû íà  " << floor << " ýòàæå" << endl;
-	elevator(floor - 1); //ãóëÿåò ïî ôóíêöèè âû÷èòàÿ 1 ïîêà íå äîéä¸ò äî return
-	cout << "âû íà  " << floor << " ýòàæå" << endl;
+	cout << "Ð²Ñ‹ Ð½Ð°  " << floor << " ÑÑ‚Ð°Ð¶Ðµ" << endl;
+	elevator(floor - 1); //Ð³ÑƒÐ»ÑÐµÑ‚ Ð¿Ð¾ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ Ð²Ñ‹Ñ‡Ð¸Ñ‚Ð°Ñ 1 Ð¿Ð¾ÐºÐ° Ð½Ðµ Ð´Ð¾Ð¹Ð´Ñ‘Ñ‚ Ð´Ð¾ return
+	cout << "Ð²Ñ‹ Ð½Ð°  " << floor << " ÑÑ‚Ð°Ð¶Ðµ" << endl;
 }
 int factorial(int n)
 {
@@ -21,27 +21,38 @@ int factorial(int n)
 }
 double power(double a, int n)
 {
-	//a - îñíîâàíèå ñòåïåíè
-	//n - ïîêàçàòåëü ñòåïåíè
+	//a - Ð¾ÑÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ ÑÑ‚ÐµÐ¿ÐµÐ½Ð¸
+	//n - Ð¿Ð¾ÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ ÑÑ‚ÐµÐ¿ÐµÐ½Ð¸
 	/*if (n == 0)return 1;
 	else if (n > 0)return a * power(a, n - 1);
 	//else return 1 / a * power(a, n + 1);
 	else return 1 / power(a, -n);*/
 	return n == 0 ? 1 : n > 0 ? a * power(a, n - 1) : 1 / power(a, -n);
 }
+int f(int n)
+{
+	if (n == 0)return 0;
+	if (n == 1 || n == 2)return 1;
+	if (n>2)return f(n - 1) + f(n - 2);
+	else return f(n + 2) - f(n + 1);
+}
 void main()
 {
 	setlocale(0, "");
 	//cout << "Hello Recursion!";
 	/*int n;
-	cout << "Ââåäèòå íîìåð ýòàæà: "; cin >> n;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ ÑÑ‚Ð°Ð¶Ð°: "; cin >> n;
 	elevator(n);*/
 	//main();
 	/*int n;
-    cout << "Ââåäèòå ÷èñëî: "; cin >> n;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; cin >> n;
     cout << factorial(n) << endl;*/
-	int a = 0, n = 0;
-	cout << "Ââåäèòå ÷èñëî: "; cin >> a;
-	cout << "Ââåäèòå ñòåïåíü: "; cin >> n;
-	cout << a << " ^ " << n << " = " << power(a, n) << endl;
+	/*int a = 0, n = 0;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; cin >> a;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚ÐµÐ¿ÐµÐ½ÑŒ: "; cin >> n;
+	cout << a << " ^ " << n << " = " << power(a, n) << endl;*/
+	
+	int n = 0;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾: "; cin >> n;
+	cout << f(n);
 }
