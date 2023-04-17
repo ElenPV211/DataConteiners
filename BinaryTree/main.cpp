@@ -1,4 +1,4 @@
-//BinaryTree
+ï»¿//BinaryTree
 #include<iostream>
 #include<ctime>
 using namespace std;
@@ -29,7 +29,7 @@ protected:
 		}
 		friend class Tree;
 		friend class UniqueTree;
-	}*Root;//ñðàçó æå îáúÿâëÿåì Root - óêàçàòåëü íà êîðåíü äåðåâà
+	}*Root;//ÑÑ€Ð°Ð·Ñƒ Ð¶Ðµ Ð¾Ð±ÑŠÑÐ²Ð»ÑÐµÐ¼ Root - ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ð° ÐºÐ¾Ñ€ÐµÐ½ÑŒ Ð´ÐµÑ€ÐµÐ²Ð°
 public:
 	Element* getRoot() const
 	{
@@ -106,7 +106,7 @@ public:
 	}
 	int Sum(Element* Root)const
 	{
-		/*static int n = 0;//ìîé âàðèàíò
+		/*static int n = 0;//Ð¼Ð¾Ð¹ Ð²Ð°Ñ€Ð¸Ð°Ð½Ñ‚
 		if (Root == nullptr)return 0;
 		summ(Root->pLeft);
 		n += Root->Data;
@@ -151,9 +151,9 @@ void main()
 	setlocale(0, "");
 #ifdef BASE_CHECK
 	Tree tree;
-	//cout << "Ìèíèìàëüíîå çíà÷åíèå â äðåâå: " << tree.minValue(tree.getRoot()) << endl;
+	//cout << "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´Ñ€ÐµÐ²Ðµ: " << tree.minValue(tree.getRoot()) << endl;
 	int n;
-	cout << "Ââåäèòå ðàçìåð äåðåâà: "; cin >> n;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ Ð´ÐµÑ€ÐµÐ²Ð°: "; cin >> n;
 	clock_t c_start = clock();
 	//time_t t_start = time(NULL);
 	for (int i = 0; i < n; i++)
@@ -164,19 +164,19 @@ void main()
 	}
 	//time_t t_end = time(NULL);
 	clock_t c_end = clock();
-	cout << "Äåðåâî çàïîëíåíî çà " << double(c_end-c_start)/CLOCKS_PER_SEC<<" ñåê";
+	cout << "Ð”ÐµÑ€ÐµÐ²Ð¾ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¾ Ð·Ð° " << double(c_end-c_start)/CLOCKS_PER_SEC<<" ÑÐµÐº";
 		/*t_end - t_start*/ 
 	//tree.print(tree.getRoot());
 	cout << endl;
 	c_start = clock();
-	cout << "Ìèíèìàëüíîå çíà÷åíèå â äðåâå: " << tree.minValue(tree.getRoot()) << endl;
+	cout << "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´Ñ€ÐµÐ²Ðµ: " << tree.minValue(tree.getRoot()) << endl;
 	c_end = clock();
-	cout << "Íàéäåíî çà " << double(c_end - c_start) / CLOCKS_PER_SEC << "ñåêóíä.\n";
-	cout << "Ìàêñèìàëüíîå çíà÷åíèå â äðåâå: " << tree.maxValue(tree.getRoot()) << endl;
-	cout << "Êîëè÷åñòâî ýëåìåíòîâ äåðåâà: " << tree.Count(tree.getRoot()) << endl;
-	cout << "Ñóììà ýëåìåíòîâ äåðåâà: " << tree.Sum(tree.getRoot()) << endl;
-	cout << "Ñðåäíåå àðèôìåòè÷åñêîå ýëåìåíòîâ äåðåâà: " << tree.Avg(tree.getRoot()) << endl;
-	cout << "Ãëóáèíà äåðåâà: " << tree.Depth(tree.getRoot()) << endl;
+	cout << "ÐÐ°Ð¹Ð´ÐµÐ½Ð¾ Ð·Ð° " << double(c_end - c_start) / CLOCKS_PER_SEC << "ÑÐµÐºÑƒÐ½Ð´.\n";
+	cout << "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´Ñ€ÐµÐ²Ðµ: " << tree.maxValue(tree.getRoot()) << endl;
+	cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.Count(tree.getRoot()) << endl;
+	cout << "Ð¡ÑƒÐ¼Ð¼Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.Sum(tree.getRoot()) << endl;
+	cout << "Ð¡Ñ€ÐµÐ´Ð½ÐµÐµ Ð°Ñ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.Avg(tree.getRoot()) << endl;
+	cout << "Ð“Ð»ÑƒÐ±Ð¸Ð½Ð° Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.Depth(tree.getRoot()) << endl;
 
 	UniqueTree u_tree;
 	for (int i = 0; i < n; i++)
@@ -186,18 +186,18 @@ void main()
 	u_tree.print(u_tree.getRoot());
 	cout << endl;
 
-	cout << "Ìèíèìàëüíîå çíà÷åíèå â äðåâå: " << u_tree.minValue(u_tree.getRoot()) << endl;
-	cout << "Ìàêñèìàëüíîå çíà÷åíèå â äðåâå: " << u_tree.maxValue(u_tree.getRoot()) << endl;
-	cout << "Êîëè÷åñòâî ýëåìåíòîâ äåðåâà: " << u_tree.Count(u_tree.getRoot()) << endl;
-	cout << "Ñóììà ýëåìåíòîâ äåðåâà: " << u_tree.Sum(u_tree.getRoot()) << endl;
-	cout << "Ñðåäíåå àðèôìåòè÷åñêîå ýëåìåíòîâ äåðåâà: " << u_tree.Avg(u_tree.getRoot()) << endl;
-	cout << "Ãëóáèíà äåðåâà: " << u_tree.Depth(u_tree.getRoot()) << endl;
+	cout << "ÐœÐ¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´Ñ€ÐµÐ²Ðµ: " << u_tree.minValue(u_tree.getRoot()) << endl;
+	cout << "ÐœÐ°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð² Ð´Ñ€ÐµÐ²Ðµ: " << u_tree.maxValue(u_tree.getRoot()) << endl;
+	cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << u_tree.Count(u_tree.getRoot()) << endl;
+	cout << "Ð¡ÑƒÐ¼Ð¼Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << u_tree.Sum(u_tree.getRoot()) << endl;
+	cout << "Ð¡Ñ€ÐµÐ´Ð½ÐµÐµ Ð°Ñ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð´ÐµÑ€ÐµÐ²Ð°: " << u_tree.Avg(u_tree.getRoot()) << endl;
+	cout << "Ð“Ð»ÑƒÐ±Ð¸Ð½Ð° Ð´ÐµÑ€ÐµÐ²Ð°: " << u_tree.Depth(u_tree.getRoot()) << endl;
 #endif // BASE_CHECK
 #ifdef DEPTH_CHECK
 	Tree tree = { 50,25,75,16,32,64,90 };
 	tree.print(tree.getRoot());
 	cout << endl;
-	cout << "Ãëóáèíà äåðåâà: " << tree.Depth(tree.getRoot()) << endl;
+	cout << "Ð“Ð»ÑƒÐ±Ð¸Ð½Ð° Ð´ÐµÑ€ÐµÐ²Ð°: " << tree.Depth(tree.getRoot()) << endl;
 #endif // DEPTH_CHECK
 
 
