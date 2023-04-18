@@ -1,6 +1,6 @@
-#include "List2.h"
+п»ї#include "List2.h"
 
-//-----------------------Class definition - определение класса--------------------------
+//-----------------------Class definition - РѕРїСЂРµРґРµР»РµРЅРёРµ РєР»Р°СЃСЃР°--------------------------
 ///////////////////////////////////////////////////////////////////////////
 //////////////////////////------Element-----------////////////////////////
 template<typename T>List<T>::Element::Element(T Data, Element* pNext, Element* pPrev)
@@ -234,11 +234,11 @@ template<typename T>void List<T>::pop_front()
 		Head = Tail = nullptr;
 		return;
 	}
-	//1)Исключаем элемент из списка
+	//1)РСЃРєР»СЋС‡Р°РµРј СЌР»РµРјРµРЅС‚ РёР· СЃРїРёСЃРєР°
 	Head = Head->pNext;
-	//2)удаляем элемент из памяти
+	//2)СѓРґР°Р»СЏРµРј СЌР»РµРјРµРЅС‚ РёР· РїР°РјСЏС‚Рё
 	delete Head->pPrev;
-	//3)Забываем про удаленный элемент
+	//3)Р—Р°Р±С‹РІР°РµРј РїСЂРѕ СѓРґР°Р»РµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚
 	Head->pPrev = nullptr;
 	size--;
 }
@@ -251,11 +251,11 @@ template<typename T>void List<T>::pop_back()
 		Head = Tail = nullptr;
 		return;
 	}
-	//1)Исключаем элемент из списка
+	//1)РСЃРєР»СЋС‡Р°РµРј СЌР»РµРјРµРЅС‚ РёР· СЃРїРёСЃРєР°
 	Tail = Tail->pPrev;
-	//2)удаляем элемент из памяти
+	//2)СѓРґР°Р»СЏРµРј СЌР»РµРјРµРЅС‚ РёР· РїР°РјСЏС‚Рё
 	delete Tail->pNext;
-	//3)Забываем про удаленный элемент
+	//3)Р—Р°Р±С‹РІР°РµРј РїСЂРѕ СѓРґР°Р»РµРЅРЅС‹Р№ СЌР»РµРјРµРЅС‚
 	Tail->pNext = nullptr;
 	size--;
 }
@@ -289,13 +289,13 @@ template<typename T>void List<T>::print()const
 {
 	for (Element* Temp = Head; Temp; Temp = Temp->pNext)
 		cout << Temp << tab << Temp->pPrev << tab << Temp->Data << tab << Temp->pNext << endl;
-	cout << "Количество элементов списка: " << size << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°: " << size << endl;
 }
 template<typename T> void List<T>::reverse_print()const
 {
 	for (Element* Temp = Tail; Temp; Temp = Temp->pPrev)
 		cout << Temp->pPrev << tab << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
-	cout << "Количество элементов списка: " << size << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°: " << size << endl;
 }
 //////////////////////////------List-----------////////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -306,4 +306,4 @@ template<typename T> List<T> operator+(const List<T>& left, const List<T>& right
 	for (typename List<T>::ConstIterator it = right.begin(); it != right.end(); ++it)cat.push_back(*it);
 	return cat;
 }
-//-----------------------Class definition - конец определения класса--------------
+//-----------------------Class definition - РєРѕРЅРµС† РѕРїСЂРµРґРµР»РµРЅРёСЏ РєР»Р°СЃСЃР°--------------

@@ -1,8 +1,8 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 using namespace std;
 #define tab "\t"
-//-----------------------Class declaration-Объявление класса--------------
+//-----------------------Class declaration-РћР±СЉСЏРІР»РµРЅРёРµ РєР»Р°СЃСЃР°--------------
 
 template<typename T>class List
 {
@@ -15,7 +15,7 @@ template<typename T>class List
 		Element(T Data, Element* pNext = nullptr, Element* pPrev = nullptr);
 		~Element();
 		friend class List<T>;
-	}*Head, * Tail;//чтобы запись была короче иначе за классом вызывалось бы так:
+	}*Head, * Tail;//С‡С‚РѕР±С‹ Р·Р°РїРёСЃСЊ Р±С‹Р»Р° РєРѕСЂРѕС‡Рµ РёРЅР°С‡Рµ Р·Р° РєР»Р°СЃСЃРѕРј РІС‹Р·С‹РІР°Р»РѕСЃСЊ Р±С‹ С‚Р°Рє:
 	//Element* Head, Element* Tail
 	size_t size;
 	class ConstBaseIterator
@@ -100,4 +100,4 @@ public:
 	void reverse_print()const;
 };
 template<typename T> List<T> operator+(const List<T>& left, const List<T>& right);
-//-----------------------Class declaration end - Конец объявления класса--------------
+//-----------------------Class declaration end - РљРѕРЅРµС† РѕР±СЉСЏРІР»РµРЅРёСЏ РєР»Р°СЃСЃР°--------------
