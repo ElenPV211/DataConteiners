@@ -432,6 +432,4 @@ void main()
 	//for (int& i : list3) i *=10;
 	//for (int i : list3)cout << i << tab; cout << endl;
 	
-	for (List::ReverseIterator)
-
 }
