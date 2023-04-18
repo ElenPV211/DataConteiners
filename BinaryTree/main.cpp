@@ -1,6 +1,7 @@
 ﻿//BinaryTree
 #include<iostream>
 #include<ctime>
+#define delimiter "\n---------------------------------\n"
 using namespace std;
 
 class Tree
@@ -70,9 +71,11 @@ public:
 	int Depth(Element* Root)
 	{
 		if (Root == nullptr)return 0;
-		if (Depth(Root->pLeft) + 1 > Depth(Root->pRight) + 1)
+		/*if (Depth(Root->pLeft) + 1 > Depth(Root->pRight) + 1)
 			 return Depth(Root->pLeft) + 1;
-		else return Depth(Root->pRight) + 1;
+		else return Depth(Root->pRight) + 1;*/
+		//return Depth(Root->pLeft) > Depth(Root->pRight) ? Depth(Root->pLeft) + 1 : Depth(Root->pRight) + 1;
+		return 1 + max(Depth(Root->pLeft), Depth(Root->pRight));
 	}
 	void print(Element* Root)const
 	{
@@ -120,8 +123,29 @@ public:
 	{
 		return(double)Sum(Root) / Count(Root);
 	}
+	void Clear(Element* Root)
+	{
+		if (Root == nullptr) return;
+		Clear(Root->pLeft);
+		Clear(Root->pRight);
+		delete Root;
+		Root = nullptr;
+	}
 
-
+	void Erase(int Data, Element* Root)
+	{
+		if (Root == nullptr) return;
+		if (Data < Root->Data)
+		{
+			if (Root->pLeft == Data)Root->pLeft = nullptr;
+			else Erase(Data, Root->pLeft);
+		}
+		else
+		{
+			if (Root->pRight == Data)Root->pRight = nullptr;
+			else Erase(Data, Root->pRight);
+		}
+	}
 };
 class  UniqueTree : public Tree
 {
@@ -141,7 +165,6 @@ public:
 			else insert(Data, Root->pRight);
 		}
 	}
-
 };
 
 #define BASE_CHECK
@@ -177,6 +200,10 @@ void main()
 	cout << "Сумма элементов дерева: " << tree.Sum(tree.getRoot()) << endl;
 	cout << "Среднее арифметическое элементов дерева: " << tree.Avg(tree.getRoot()) << endl;
 	cout << "Глубина дерева: " << tree.Depth(tree.getRoot()) << endl;
+
+
+
+	cout << delimiter;
 
 	UniqueTree u_tree;
 	for (int i = 0; i < n; i++)
